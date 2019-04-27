@@ -32,9 +32,9 @@ class Score {
   }
 
   add(otherScore) {
-    this.wealth += +!!otherScore.wealth
-    this.accomplishment += +!!otherScore.accomplishment
-    this.pleasure += +!!otherScore.pleasure
+    this.wealth = addValue(this.wealth, otherScore.wealth)
+    this.accomplishment = addValue(this.accomplishment, otherScore.accomplishment)
+    this.pleasure = addValue(this.pleasure, otherScore.pleasure)
   }
 
   // Calculates the resulting total score.
