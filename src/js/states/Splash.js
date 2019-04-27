@@ -16,8 +16,8 @@ export default class Splash extends State {
         type: this.background,
         x: 0,
         y: 0,
-        w: size.width,
-        h: size.height
+        w: this.size.width,
+        h: this.size.height
       }
     )
     game.objects.push(
@@ -25,8 +25,8 @@ export default class Splash extends State {
         type: this.image,
         x: 0,
         y: 0,
-        w: size.width,
-        h: size.height
+        w: this.size.width,
+        h: this.size.height
       }
     )
   }
