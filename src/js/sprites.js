@@ -13,6 +13,48 @@ const sprites = [].concat(
       y: 200,
       w: 320,
       h: 200
+    },
+    {
+      type: "life_time",
+      x: 0,
+      y: 5,
+      w: 9,
+      h: 9
+    },
+    {
+      type: "life_health",
+      x: 9,
+      y: 5,
+      w: 9,
+      h: 9
+    },
+    {
+      type: "life_motivation",
+      x: 18,
+      y: 5,
+      w: 9,
+      h: 9
+    },
+    {
+      type: "score_wealth",
+      x: 27,
+      y: 5,
+      w: 9,
+      h: 9
+    },
+    {
+      type: "score_accomplishment",
+      x: 36,
+      y: 5,
+      w: 9,
+      h: 9
+    },
+    {
+      type: "score_pleasure",
+      x: 45,
+      y: 5,
+      w: 9,
+      h: 9
     }
   ],
   createFontSprites()
