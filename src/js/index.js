@@ -1,3 +1,4 @@
+import cards from './cards'
 import { EventListener as ScaledClickEventListener } from './click'
 import Game from './Game'
 import Splash from './states/Splash'
@@ -29,7 +30,7 @@ function init(e) {
     () => {
       const game = (new Game()).
         registerState('title', new Splash({ nextState: "play", background: "bg", image: "screen_title", size: size})).
-        registerState('play', new Play({ size: size, background: "bg" }))
+        registerState('play', new Play({ size: size, background: "bg", cards: cards }))
       game.nextState('title')
       start(
         (next) => {
