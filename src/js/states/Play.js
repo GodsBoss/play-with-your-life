@@ -1,5 +1,5 @@
 import { filters } from '../objects'
-import { line, LEFT, RIGHT } from '../font'
+import { fit, line, LEFT, RIGHT } from '../font'
 import State from '../State'
 
 export default class Play extends State {
@@ -7,7 +7,7 @@ export default class Play extends State {
     super()
     this.size = size
     this.background = background
-    this.cards = cards
+    this.cards = cards.map((raw) => new Card(raw))
   }
 
   init(game) {
@@ -66,6 +66,21 @@ export default class Play extends State {
     game.data.life = new Life(100)
     this.updateLifeChars(game)
     this.updateScoreChars(game)
+    this.updateCards(game)
+    /*
+    for(var x = 0; x < 4; x++) {
+      for(var y = 0; y < 2; y++) {
+        game.objects.push(
+          {
+            type: "card_background",
+            x: x * 80 + 2,
+            y: y * 64 + 74,
+            w: 76,
+            h: 60
+          }
+        )
+      }
+    }*/
   }
 
   updateLifeChars(game) {
@@ -98,9 +113,70 @@ export default class Play extends State {
     game.objects.push(...chars)
   }
 
+  updateCards(game) {
+    game.objects = game.objects.filter(filters.not(belongsTo('card')))
+    const possibleCards = []
+    this.cards.forEach(
+      (card) => {
+        if (card.isPossible(game)) {
+          possibleCards.push(card)
+        }
+      }
+    )
+    shuffle(possibleCards)
+    possibleCards.
+      slice(0, 8).
+      forEach(
+        (card, index) => {
+          const col = index % 4
+          const row = Math.floor(index / 4)
+          game.objects.push(
+            {
+              type: "card_background",
+              belongs_to: 'card',
+              card_id: card.id,
+              x: col * 80 + 2,
+              y: row * 64 + 74,
+              w: 76,
+              h: 60
+            }
+          )
+          game.objects.push(
+            ...fit({ message: card.title, position: { x: col * 80 + 4, y: row * 64 + 76 }, width: 76 })
+          )
+          createCardChangeObjects(game, { position: { x: col * 80 + 4, y: row * 64 + 103 }, typePrefix: 'life', changes: card.getCost(), swapSignum: SWAP_SIGNUM })
+          createCardChangeObjects(game, { position: { x: col * 80 + 48, y: row * 64 + 103 }, typePrefix: 'score', changes: card.getBenefits() })
+        }
+    )
+  }
+
   tick(game) {}
 
   invoke(game, event) {}
+}
+
+const KEEP_SIGNUM = 1
+const SWAP_SIGNUM = -1
+
+function createCardChangeObjects(game, { position, typePrefix, changes, swapSignum = KEEP_SIGNUM }) {
+  changes.forEach(
+    (change, index) => {
+      game.objects.push(
+        {
+          type: typePrefix + "_" + change.type,
+          belongs_to: 'card',
+          x: position.x,
+          y: position.y + index * 10,
+          w: 9,
+          h: 9
+        }
+      )
+      const value = (change.value * swapSignum > 0 ? '-' : '+') + change.value
+      game.objects.push(
+        ...line({ message: value, position: { x: position.x + 11, y: position.y + 2 + index * 10 }})
+      )
+    }
+  )
 }
 
 function belongsTo(kind) {
@@ -163,7 +239,8 @@ function cardInnerPlace(size) {
 }
 
 class Card {
-  constructor({ title, cost, benefits, condition = alwaysAllowed, effects = noEffects}) {
+  constructor({ id, title, cost, benefits, condition = alwaysAllowed, effects = noEffects}) {
+    this.id = id
     this.title = title
     this.cost = cost
     this.benefits = benefits
@@ -180,6 +257,25 @@ class Card {
     game.data.score.add(this.benefits)
     this.effects(game)
   }
+
+  // getCost returns costs as a sorted list.
+  getCost() {
+    return getTypedValues(this.cost, ['time', 'health', 'motivation'])
+  }
+
+  // getBenefits returns benefits as a sorted list.
+  getBenefits() {
+    return getTypedValues(this.benefits, ['wealth', 'accomplishment', 'pleasure'])
+  }
+}
+
+function getTypedValues(container, keys) {
+  const result = []
+  keys.
+    filter((key) => typeof container[key] === 'number').
+    forEach((key) => result.push({type: key, value: container[key] })
+  )
+  return result
 }
 
 function alwaysAllowed(game) {
@@ -187,3 +283,12 @@ function alwaysAllowed(game) {
 }
 
 function noEffects(game) {}
+
+function shuffle(arr) {
+  for(var i=0; i<arr.length; i++) {
+    var j = Math.floor(Math.random() * arr.length)
+    const temp = arr[i]
+    arr[i] = arr[j]
+    arr[j] = temp
+  }
+}
