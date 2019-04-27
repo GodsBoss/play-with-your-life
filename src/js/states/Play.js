@@ -1,3 +1,5 @@
+import { filters } from '../objects'
+import { line, LEFT, RIGHT } from '../font'
 import State from '../State'
 
 export default class Play extends State {
@@ -60,11 +62,53 @@ export default class Play extends State {
         h: 9
       }
     ].forEach((obj) => game.objects.push(obj))
+    game.data.score = new Score()
+    game.data.life = new Life(100)
+    this.updateLifeChars(game)
+    this.updateScoreChars(game)
+  }
+
+  updateLifeChars(game) {
+    game.objects = game.objects.filter(filters.not(belongsTo('life')))
+    const chars = [].concat(
+      ...[
+        { value: game.data.life.time, y: 6 },
+        { value: game.data.life.health, y: 17 },
+        { value: game.data.life.motivation, y: 28 }
+      ].map(
+        (item) => line({ message: item.value.toString(), position: { x: 15, y: item.y }, align: LEFT})
+      )
+    )
+    chars.forEach(letBelongTo('life'))
+    game.objects.push(...chars)
+  }
+
+  updateScoreChars(game) {
+    game.objects = game.objects.filter(filters.not(belongsTo('score')))
+    const chars = [].concat(
+      ...[
+        { value: game.data.score.wealth, y: 6 },
+        { value: game.data.score.accomplishment, y: 17 },
+        { value: game.data.score.pleasure, y: 28 }
+      ].map(
+        (item) => line({ message: item.value.toString(), position: { x: 304, y: item.y}, align: RIGHT })
+      )
+    )
+    chars.forEach(letBelongTo('score'))
+    game.objects.push(...chars)
   }
 
   tick(game) {}
 
   invoke(game, event) {}
+}
+
+function belongsTo(kind) {
+  return (obj) => obj.kind == kind
+}
+
+function letBelongTo(kind) {
+  return (obj) => obj.kind = kind
 }
 
 class Score {
