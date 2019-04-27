@@ -15,6 +15,48 @@ export default class Play extends State {
         y: 0,
         w: this.size.width,
         h: this.size.height
+      },
+      {
+        type: 'life_time',
+        x: 4,
+        y: 4,
+        w: 9,
+        h: 9
+      },
+      {
+        type: 'life_health',
+        x: 4,
+        y: 15,
+        w: 9,
+        h: 9
+      },
+      {
+        type: 'life_motivation',
+        x: 4,
+        y: 26,
+        w: 9,
+        h: 9
+      },
+      {
+        type: 'score_wealth',
+        x: 306,
+        y: 4,
+        w: 9,
+        h: 9
+      },
+      {
+        type: 'score_accomplishment',
+        x: 306,
+        y: 15,
+        w: 9,
+        h: 9
+      },
+      {
+        type: 'score_pleasure',
+        x: 306,
+        y: 26,
+        w: 9,
+        h: 9
       }
     ].forEach((obj) => game.objects.push(obj))
   }
