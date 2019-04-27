@@ -28,18 +28,18 @@ class Score {
   constructor() {
     this.wealth = 0
     this.accomplishment = 0
-    this.wellBeing = 0
+    this.pleasure = 0
   }
 
   add(otherScore) {
     this.wealth += +!!otherScore.wealth
     this.accomplishment += +!!otherScore.accomplishment
-    this.wellBeing += +!!otherScore.wellBeing
+    this.pleasure += +!!otherScore.pleasure
   }
 
   // Calculates the resulting total score.
   total() {
-    return this.wealth * this.accomplishment * this.wellBeing
+    return this.wealth * this.accomplishment * this.pleasure
   }
 }
 
