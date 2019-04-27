@@ -137,10 +137,10 @@ class Life {
     this.motivation = initialAmount
   }
 
-  add(otherLife) {
-    this.time = addValue(this.time, otherLife.time)
-    this.health = addValue(this.health, otherLife.health)
-    this.motivation = addValue(this.motivation, otherLife.motivation)
+  subtract(otherLife) {
+    this.time = addValue(this.time, -otherLife.time)
+    this.health = addValue(this.health, -otherLife.health)
+    this.motivation = addValue(this.motivation, -otherLife.motivation)
   }
 
   isOver() {
@@ -161,3 +161,29 @@ function cardInnerPlace(size) {
   // - padding of 1
   return Math.floor((size.width / cardsPerRow) - 8)
 }
+
+class Card {
+  constructor({ title, cost, benefits, condition = alwaysAllowed, effects = noEffects}) {
+    this.title = title
+    this.cost = cost
+    this.benefits = benefits
+    this.condition = condition
+    this.effects = effects
+  }
+
+  isPossible(game) {
+    return this.condition(game)
+  }
+
+  activate(game) {
+    game.data.life.subtract(this.cost)
+    game.data.score.add(this.benefits)
+    this.effects(game)
+  }
+}
+
+function alwaysAllowed(game) {
+  return true
+}
+
+function noEffects(game) {}
