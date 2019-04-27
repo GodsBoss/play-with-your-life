@@ -55,6 +55,13 @@ const sprites = [].concat(
       y: 5,
       w: 9,
       h: 9
+    },
+    {
+      type: "card_background",
+      x: 0,
+      y: 14,
+      w: 76,
+      h: 60
     }
   ],
   createFontSprites()
