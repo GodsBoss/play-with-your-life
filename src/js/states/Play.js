@@ -8,7 +8,7 @@ export default class Play extends State {
   }
 
   init(game) {
-    game.objects.push(
+    [
       {
         type: this.background,
         x: 0,
@@ -16,7 +16,7 @@ export default class Play extends State {
         w: this.size.width,
         h: this.size.height
       }
-    )
+    ].forEach((obj) => game.objects.push(obj))
   }
 
   tick(game) {}
