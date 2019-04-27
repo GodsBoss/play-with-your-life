@@ -1,5 +1,6 @@
 const cards = [
   {
+    id: "party_hard",
     title: "party hard!",
     cost: {
       time: 1,
@@ -10,6 +11,7 @@ const cards = [
     }
   },
   {
+    id: "do_drugs",
     title: "do drugs!",
     cost: {
       time: 1,
