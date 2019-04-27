@@ -48,7 +48,7 @@ export class SpriteAtlas {
   getSprite(type, frame) {
     const sprite = this.sprites[key(type, frame)]
     if (typeof sprite === 'undefined') {
-      throw new Error(`Sprite key ${key} with frame ${frame} unknown`)
+      throw new Error(`Sprite key ${key(type, frame)} with frame ${frame} unknown`)
     }
     return sprite
   }
