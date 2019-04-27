@@ -51,9 +51,9 @@ class Life {
   }
 
   add(otherLife) {
-    this.time = addLifeValue(this.time, otherLife.time)
-    this.health = addLifeValue(this.health, otherLife.health)
-    this.motivation = addLifeValue(this.motivation, otherLife.motivation)
+    this.time = addValue(this.time, otherLife.time)
+    this.health = addValue(this.health, otherLife.health)
+    this.motivation = addValue(this.motivation, otherLife.motivation)
   }
 
   isOver() {
@@ -61,6 +61,6 @@ class Life {
   }
 }
 
-function addLifeValue(base, diff) {
+function addValue(base, diff) {
   return Math.max(0, base + !!diff)
 }
