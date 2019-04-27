@@ -82,7 +82,7 @@ function createFontSprites() {
     chars.push(
       {
         type: 'char_' + i,
-        x: (26 + i - 1) * 5,
+        x: (26 + i) * 5,
         y: 0,
         w: 5,
         h: 5
@@ -96,7 +96,7 @@ function createFontSprites() {
       chars.push(
         {
           type: 'char_' + char,
-          x: (26 + 10 + index - 1) * 5,
+          x: (26 + 10 + index) * 5,
           y: 0,
           w: 5,
           h: 5
