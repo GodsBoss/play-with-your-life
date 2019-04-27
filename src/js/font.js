@@ -61,7 +61,7 @@ function fit({ message, position, width}) {
 // charSize is the place a character needs. The actual graphics are 5x5 pixel.
 const charSize = 6
 
-export default {
+export {
   LEFT,
   RIGHT,
   fit,
