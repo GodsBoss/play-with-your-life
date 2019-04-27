@@ -32,9 +32,9 @@ class Score {
   }
 
   add(otherScore) {
-    this.wealth += +otherScore.wealth
-    this.accomplishment += +otherScore.accomplishment
-    this.wellBeing += +otherScore.wellBeing
+    this.wealth += +!!otherScore.wealth
+    this.accomplishment += +!!otherScore.accomplishment
+    this.wellBeing += +!!otherScore.wellBeing
   }
 
   // Calculates the resulting total score.
