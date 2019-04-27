@@ -107,3 +107,13 @@ class Life {
 function addValue(base, diff) {
   return Math.max(0, base + !!diff)
 }
+
+const cardsPerRow = 4
+
+function cardInnerPlace(size) {
+  // Per card there is on both sides:
+  // - margin of 2
+  // - border of 1
+  // - padding of 1
+  return Math.floor((size.width / cardsPerRow) - 8)
+}
