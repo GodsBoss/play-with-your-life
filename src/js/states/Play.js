@@ -42,3 +42,25 @@ class Score {
     return this.wealth * this.accomplishment * this.wellBeing
   }
 }
+
+class Life {
+  constructor(initialAmount) {
+    this.time = initialAmount
+    this.health = initialAmount
+    this.motivation = initialAmount
+  }
+
+  add(otherLife) {
+    this.time = addLifeValue(this.time, otherLife.time)
+    this.health = addLifeValue(this.health, otherLife.health)
+    this.motivation = addLifeValue(this.motivation, otherLife.motivation)
+  }
+
+  isOver() {
+    return this.time <= 0 || this.health <= 0 || this.motivation <= 0
+  }
+}
+
+function addLifeValue(base, diff) {
+  return Math.max(0, base + !!diff)
+}
