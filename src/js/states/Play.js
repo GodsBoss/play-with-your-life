@@ -1,10 +1,11 @@
 import State from '../State'
 
 export default class Play extends State {
-  constructor({ size, background }) {
+  constructor({ size, background, cards = [] }) {
     super()
     this.size = size
     this.background = background
+    this.cards = cards
   }
 
   init(game) {
