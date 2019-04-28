@@ -29,10 +29,10 @@ const normalCards = [
     title: "do drugs!",
     cost: {
       time: 1,
-      health: 8
+      health: 6
     },
     benefits: {
-      pleasure: 15
+      pleasure: 10
     }
   },
   {
