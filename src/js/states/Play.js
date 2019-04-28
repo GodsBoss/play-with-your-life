@@ -1,4 +1,4 @@
-import { filters } from '../objects'
+import { filters, withAll } from '../objects'
 import { fit, line, LEFT, RIGHT } from '../font'
 import State from '../State'
 
@@ -342,18 +342,6 @@ function shuffle(arr) {
     arr[i] = arr[j]
     arr[j] = temp
   }
-}
-
-// withAll executes all fns in order on all items of arr, then returns it.
-function withAll(arr, ...fns) {
-  fns.forEach(
-    (fn) => {
-      arr.forEach(
-        (item, index, currentArr) => fn(item, index, currentArr)
-      )
-    }
-  )
-  return arr
 }
 
 // setZ returns a function which sets z on an object to the value of the variable z.

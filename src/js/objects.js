@@ -31,3 +31,15 @@ export const filters = {
   // every takes other predicates and creates a disjunctional filter, essentialy creating the union of the filtered results.
   some: (...predicates) => (obj) => predicates.some((pred) => pred(obj))
 }
+
+// withAll executes all fns in order on all items of arr, then returns it.
+export function withAll(arr, ...fns) {
+  fns.forEach(
+    (fn) => {
+      arr.forEach(
+        (item, index, currentArr) => fn(item, index, currentArr)
+      )
+    }
+  )
+  return arr
+}
