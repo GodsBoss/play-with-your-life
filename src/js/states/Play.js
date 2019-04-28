@@ -1,4 +1,4 @@
-import { filters, withAll } from '../objects'
+import { filters, setZ, withAll } from '../objects'
 import { fit, line, LEFT, RIGHT } from '../font'
 import State from '../State'
 
@@ -341,14 +341,6 @@ function shuffle(arr) {
     const temp = arr[i]
     arr[i] = arr[j]
     arr[j] = temp
-  }
-}
-
-// setZ returns a function which sets z on an object to the value of the variable z.
-// Used with withAll. Can also be used with forEach.
-function setZ(z) {
-  return function(item) {
-    item.z = z
   }
 }
 

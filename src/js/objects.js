@@ -43,3 +43,12 @@ export function withAll(arr, ...fns) {
   )
   return arr
 }
+
+
+// setZ returns a function which sets z on an object to the value of the variable z.
+// Used with withAll. Can also be used with forEach.
+export function setZ(z) {
+  return function(item) {
+    item.z = z
+  }
+}
