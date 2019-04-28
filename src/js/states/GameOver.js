@@ -1,4 +1,4 @@
-import { fit } from '../font'
+import { fit, line, LEFT, RIGHT } from '../font'
 import State from '../State'
 
 export default class GameOver extends State {
@@ -70,6 +70,108 @@ export default class GameOver extends State {
           width: 280
         }
       )
+    )
+    game.objects.push(
+      ...line(
+        {
+          message: 'Points:',
+          position: { x: IMAGE_POSITION.x + 104, y: IMAGE_POSITION.y }
+        }
+      )
+    )
+    game.objects.push(
+      {
+        type: 'char_X',
+        x: IMAGE_POSITION.x + 104,
+        y: IMAGE_POSITION.y + 22,
+        w: 5,
+        h: 5,
+        z: 1000
+      }
+    )
+    game.objects.push(
+      {
+        type: 'char_X',
+        x: IMAGE_POSITION.x + 104,
+        y: IMAGE_POSITION.y + 33,
+        w: 5,
+        h: 5,
+        z: 1000
+      }
+    )
+    game.objects.push(
+      ...line(
+        {
+          message: '----------------',
+          position: { x: IMAGE_POSITION.x + 104, y: IMAGE_POSITION.y + 44 }
+        }
+      )
+    )
+    game.objects.push(
+      ...line(
+        {
+          message: game.data.score.wealth.toString(),
+          position: { x: IMAGE_POSITION.x + 184, y: IMAGE_POSITION.y + 11 },
+          align: RIGHT
+        }
+      )
+    )
+    game.objects.push(
+      ...line(
+        {
+          message: game.data.score.accomplishment.toString(),
+          position: { x: IMAGE_POSITION.x + 184, y: IMAGE_POSITION.y + 22 },
+          align: RIGHT
+        }
+      )
+    )
+    game.objects.push(
+      ...line(
+        {
+          message: game.data.score.pleasure.toString(),
+          position: { x: IMAGE_POSITION.x + 184, y: IMAGE_POSITION.y + 33 },
+          align: RIGHT
+        }
+      )
+    )
+    game.objects.push(
+      ...line(
+        {
+          message: game.data.score.total().toString(),
+          position: { x: IMAGE_POSITION.x + 184, y: IMAGE_POSITION.y + 55 },
+          align: RIGHT
+        }
+      )
+    )
+    game.objects.push(
+      {
+        type: 'score_wealth',
+        x: IMAGE_POSITION.x + 186,
+        y: IMAGE_POSITION.y + 11 - 2,
+        w: 9,
+        h: 9,
+        z: 1000
+      }
+    )
+    game.objects.push(
+      {
+        type: 'score_accomplishment',
+        x: IMAGE_POSITION.x + 186,
+        y: IMAGE_POSITION.y + 22 - 2,
+        w: 9,
+        h: 9,
+        z: 1000
+      }
+    )
+    game.objects.push(
+      {
+        type: 'score_pleasure',
+        x: IMAGE_POSITION.x + 186,
+        y: IMAGE_POSITION.y + 33 - 2,
+        w: 9,
+        h: 9,
+        z: 1000
+      }
     )
   }
 
