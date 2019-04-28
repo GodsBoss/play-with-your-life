@@ -40,6 +40,7 @@ export default class GameOver extends State {
     if (game.data.life.noMoreMotivation()) {
       endReasons.push('motivation')
     }
+    const endReason = endReasons.join('_')
     game.objects.push(
       {
         type: 'game_over_background',
@@ -52,7 +53,7 @@ export default class GameOver extends State {
     )
     game.objects.push(
       {
-        type: 'game_over_' + endReasons.join('_'),
+        type: `game_over_${endReason}`,
         x: IMAGE_POSITION.x,
         y: IMAGE_POSITION.y,
         w: 100,
