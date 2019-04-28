@@ -305,6 +305,17 @@ const normalCards = [
     },
     condition: filters.every(amount('social_media', isAtLeast(3)), isFalse('social_media_channel')),
     effects: several(setSwitch('social_media_channel', toTrue), setSwitch('famous', toTrue))
+  },
+  {
+    id: 'stream_and_chill',
+    title: 'Stream and chill!',
+    cost: {
+      time: 1,
+      motivation: 3
+    },
+    benefits: {
+      pleasure:4
+    }
   }
 ]
 
