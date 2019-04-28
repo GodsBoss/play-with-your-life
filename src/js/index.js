@@ -1,6 +1,7 @@
 import cards from './cards'
 import { EventListener as ScaledClickEventListener } from './click'
 import Game from './Game'
+import GameOver from './states/GameOver'
 import Splash from './states/Splash'
 import loader from './loader'
 import { start } from './Loop'
@@ -30,7 +31,8 @@ function init(e) {
     () => {
       const game = (new Game()).
         registerState('title', new Splash({ nextState: "play", background: "bg", image: "screen_title", size: size})).
-        registerState('play', new Play({ size: size, background: "bg", cards: cards }))
+        registerState('play', new Play({ size: size, background: "bg", cards: cards })).
+        registerState('game_over', new GameOver({ nextState: 'title', background: 'bg', size: size }))
       game.nextState('title')
       start(
         (next) => {

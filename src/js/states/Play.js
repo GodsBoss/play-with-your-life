@@ -170,6 +170,10 @@ export default class Play extends State {
       filter((card) => card.id == targetObjects[0].cardId).
       forEach((card) => card.activate(game))
 
+    if (game.data.life.isOver()) {
+      game.nextState('game_over')
+      return
+    }
     this.updateLifeChars(game)
     this.updateScoreChars(game)
     this.updateCards(game)
@@ -250,8 +254,20 @@ class Life {
     this.motivation = addValue(this.motivation, -otherLife.motivation)
   }
 
+  noMoreTime() {
+    return this.time <= 0
+  }
+
+  noMoreHealth() {
+    return this.health <= 0
+  }
+
+  noMoreMotivation() {
+    return this.motivation <= 0
+  }
+
   isOver() {
-    return this.time <= 0 || this.health <= 0 || this.motivation <= 0
+    return this.noMoreTime() || this.noMoreHealth() || this.noMoreMotivation()
   }
 }
 
