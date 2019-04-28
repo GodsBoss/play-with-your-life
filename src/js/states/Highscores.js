@@ -82,7 +82,6 @@ export default class Highscores extends State {
 }
 
 function showList(game, position, list) {
-  console.log(game, position, list)
   list.forEach(
     (value, index) => {
       game.objects.push(
