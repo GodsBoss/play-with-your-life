@@ -73,12 +73,12 @@ const normalCards = [
     id: "have_a_baby",
     title: "have a baby!",
     cost: {
-      time: 10,
-      motivation: 3
+      time: 4,
+      motivation: 2
     },
     benefits: {
       accomplishment: 10,
-      wealth: -7
+      wealth: -4
     },
     effects: setAmount('children_count', add(1))
   },
@@ -86,12 +86,12 @@ const normalCards = [
     id: "adopt_a_child",
     title: "adopt a child!",
     cost: {
-      time: 8,
-      motivation: 1
+      time: 2,
+      motivation: 3
     },
     benefits: {
-      accomplishment: 7,
-      wealth: -5
+      accomplishment: 10,
+      wealth: -3
     },
     condition: isTrue('married'),
     effects: setAmount('children_count', add(1))
