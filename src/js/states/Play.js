@@ -128,8 +128,8 @@ export default class Play extends State {
           game.objects.push(
             {
               type: "card_background",
-              belongs_to: 'card',
-              card_id: card.id,
+              kind: 'card',
+              cardId: card.id,
               x: col * (CARD_SIZE.width + 4) + 2,
               y: row * (CARD_SIZE.height + 4) + 74,
               w: CARD_SIZE.width,
@@ -138,7 +138,11 @@ export default class Play extends State {
             }
           )
           game.objects.push(
-            ...withAll(fit({ message: card.title, position: { x: col * (CARD_SIZE.width + 4) + 4, y: row * (CARD_SIZE.height + 4) + 76 }, width: CARD_SIZE.width - 4 }), setZ(10000))
+            ...withAll(
+              fit({ message: card.title, position: { x: col * (CARD_SIZE.width + 4) + 4, y: row * (CARD_SIZE.height + 4) + 76 }, width: CARD_SIZE.width - 4 }),
+              setZ(10000),
+              letBelongTo('card')
+            )
           )
           createCardChangeObjects(game, { position: { x: col * (CARD_SIZE.width + 4) + 4, y: row * (CARD_SIZE.height + 4) + 103 }, typePrefix: 'life', changes: card.getCost(), swapSignum: SWAP_SIGNUM })
           createCardChangeObjects(game, { position: { x: col * (CARD_SIZE.width + 4) + 48, y: row * (CARD_SIZE.height + 4) + 103 }, typePrefix: 'score', changes: card.getBenefits() })
@@ -148,7 +152,27 @@ export default class Play extends State {
 
   tick(game) {}
 
-  invoke(game, event) {}
+  invoke(game, event) {
+    if (event.type !== 'click') {
+      return
+    }
+    const targetObjects = game.objects.filter(
+      filters.every(
+        filters.byType('card_background'),
+        filters.byPosition(event)
+      )
+    )
+    if (targetObjects.length !== 1) {
+      return
+    }
+    this.cards.
+      filter((card) => card.id == targetObjects[0].cardId).
+      forEach((card) => card.activate(game))
+
+    this.updateLifeChars(game)
+    this.updateScoreChars(game)
+    this.updateCards(game)
+  }
 }
 
 const CARD_SIZE = {
@@ -165,7 +189,7 @@ function createCardChangeObjects(game, { position, typePrefix, changes, swapSign
       game.objects.push(
         {
           type: typePrefix + "_" + change.type,
-          belongs_to: 'card',
+          kind: 'card',
           x: position.x,
           y: position.y + index * 10,
           w: 9,
@@ -175,7 +199,11 @@ function createCardChangeObjects(game, { position, typePrefix, changes, swapSign
       )
       const value = (change.value * swapSignum < 0 ? '-' : '+') + change.value
       game.objects.push(
-        ...withAll(line({ message: value, position: { x: position.x + 11, y: position.y + 2 + index * 10 }}), setZ(10000))
+        ...withAll(
+          line({ message: value, position: { x: position.x + 11, y: position.y + 2 + index * 10 }}),
+          setZ(10000),
+          letBelongTo('card')
+        )
       )
     }
   )
@@ -227,7 +255,10 @@ class Life {
 }
 
 function addValue(base, diff) {
-  return Math.max(0, base + !!diff)
+  if (typeof diff !== 'number' || isNaN(diff)) {
+    return base
+  }
+  return Math.max(0, base + diff)
 }
 
 const cardsPerRow = 4
@@ -295,10 +326,14 @@ function shuffle(arr) {
   }
 }
 
-// withAll executes fn on all items of arr, then returns it.
-function withAll(arr, fn) {
-  arr.forEach(
-    (item, index, currentArr) => fn(item, index, currentArr)
+// withAll executes all fns in order on all items of arr, then returns it.
+function withAll(arr, ...fns) {
+  fns.forEach(
+    (fn) => {
+      arr.forEach(
+        (item, index, currentArr) => fn(item, index, currentArr)
+      )
+    }
   )
   return arr
 }
