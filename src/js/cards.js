@@ -326,7 +326,7 @@ const normalCards = [
     },
     benefits: {
       wealth: 3,
-      accomplishment: 2
+      accomplishment: 3
     },
     condition: filters.every(
       amount('social_media', isAtLeast(2)),
