@@ -264,6 +264,18 @@ const normalCards = [
     effects: setAmount('social_media', add(1))
   },
   {
+    id: 'be_angry_troll',
+    title: 'Be angry troll!',
+    cost: {
+      time: 1,
+      health: 1
+    },
+    benefits: {
+      pleasure: 3,
+      accomplishment: -1
+    }
+  },
+  {
     id: 'start_blog',
     title: 'Start blog!',
     cost: {
