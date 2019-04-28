@@ -41,7 +41,9 @@ const normalCards = [
     cost: {
       time: 1
     },
-    benefits: {}
+    benefits: {
+      accomplishment: -1
+    }
   },
   {
     id: "marry",
