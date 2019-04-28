@@ -74,20 +74,6 @@ export default class Play extends State {
     this.updateLifeChars(game)
     this.updateScoreChars(game)
     this.updateCards(game)
-    /*
-    for(var x = 0; x < 4; x++) {
-      for(var y = 0; y < 2; y++) {
-        game.objects.push(
-          {
-            type: "card_background",
-            x: x * 80 + 2,
-            y: y * 64 + 74,
-            w: 76,
-            h: 60
-          }
-        )
-      }
-    }*/
   }
 
   updateLifeChars(game) {
