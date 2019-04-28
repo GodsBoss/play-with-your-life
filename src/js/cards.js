@@ -9,7 +9,7 @@ const normalCards = [
       health: 5
     },
     benefits: {
-      pleasure: 10
+      pleasure: 7
     },
     condition: isFalse('married')
   },
@@ -21,7 +21,7 @@ const normalCards = [
       health: 4
     },
     benefits: {
-      pleasure: 7
+      pleasure: 5
     }
   },
   {
@@ -32,7 +32,7 @@ const normalCards = [
       health: 6
     },
     benefits: {
-      pleasure: 10
+      pleasure: 7
     }
   },
   {
@@ -49,11 +49,11 @@ const normalCards = [
     id: "marry",
     title: "marry!",
     cost: {
-      motivation: 5,
-      time: 3
+      motivation: 4,
+      time: 2
     },
     benefits: {
-      accomplishment: 5
+      accomplishment: 8
     },
     condition: isFalse('married'),
     effects: setSwitch('married', toFixedValue(true))
@@ -62,11 +62,12 @@ const normalCards = [
     id: "divorce",
     title: "divorce!",
     cost: {
-      health: 5,
-      motivation: -5
+      health: 4,
+      motivation: -4
     },
     benefits: {
-      wealth: -10
+      pleasure: 4,
+      wealth: -6
     },
     condition: isTrue('married'),
     effects: setSwitch('married', toFixedValue(false))
@@ -75,12 +76,12 @@ const normalCards = [
     id: "have_a_baby",
     title: "have a baby!",
     cost: {
-      time: 4,
+      time: 3,
       motivation: 2
     },
     benefits: {
-      accomplishment: 10,
-      wealth: -4
+      accomplishment: 8,
+      wealth: -3
     },
     effects: setAmount('children_count', add(1))
   },
@@ -89,11 +90,11 @@ const normalCards = [
     title: "adopt a child!",
     cost: {
       time: 2,
-      motivation: 3
+      motivation: 2
     },
     benefits: {
-      accomplishment: 10,
-      wealth: -3
+      accomplishment: 8,
+      wealth: -2
     },
     condition: isTrue('married'),
     effects: setAmount('children_count', add(1))
@@ -102,12 +103,12 @@ const normalCards = [
     id: "release_child_for_adoption",
     title: "release child for adoption!",
     cost: {
-      time: -5,
+      time: -2,
       motivation: -2
     },
     benefits: {
-      accomplishment: -3,
-      wealth: 5
+      accomplishment: -6,
+      wealth: 2
     },
     condition: amount('children_count', isMoreThan(0)),
     effects: setAmount('children_count', add(-1))
@@ -116,11 +117,12 @@ const normalCards = [
     id: 'do_sports_you_like',
     title: 'Do sports you like!',
     cost: {
-      time: 2,
-      health: -2
+      time: 1,
+      health: -1,
+      motivation: 1
     },
     benefits: {
-      pleasure: 2
+      pleasure: 1
     },
     effects: setAmount('fitness', add(1))
   },
@@ -128,9 +130,9 @@ const normalCards = [
     id: 'do_sports_you_dont_like',
     title: "Do sports you don't like!",
     cost: {
-      time: 2,
-      health: -3,
-      motivation: 1
+      time: 1,
+      health: -1,
+      motivation: 2
     },
     benefits: {
       accomplishment: 2
@@ -141,13 +143,13 @@ const normalCards = [
     id: 'win_the_olympics',
     title: 'Win the Olympics!',
     cost: {
-      time: 4,
-      health: 4,
-      motivation: 5
+      time: 3,
+      health: 2,
+      motivation: 4
     },
     benefits: {
-      accomplishment: 12,
-      wealth: 3
+      accomplishment: 8,
+      wealth: 7
     },
     condition: filters.every(isFalse('olympics'), amount('fitness', isAtLeast(3))),
     effects: several(setSwitch('olympics', toTrue), setSwitch('famous', toTrue))
@@ -156,22 +158,22 @@ const normalCards = [
     id: 'do_boring_office_work',
     title: 'Do boring office work!',
     cost: {
-      time: 4,
-      motivation: 6
+      time: 2,
+      motivation: 3
     },
     benefits: {
-      wealth: 10
+      wealth: 5
     }
   },
   {
     id: 'do_blue_collar_work',
     title: 'Do blue-collar work!',
     cost: {
-      time: 2,
-      health: 4
+      time: 1,
+      health: 2
     },
     benefits: {
-      wealth: 6
+      wealth: 3
     }
   },
   {
@@ -183,7 +185,7 @@ const normalCards = [
       motivation: 2
     },
     benefits: {
-      wealth: 9
+      wealth: 8
     },
     condition: isTrue('educated')
   },
@@ -202,11 +204,11 @@ const normalCards = [
     id: 'educate_yourself',
     title: 'Educate yourself!',
     cost: {
-      time: 8,
+      time: 4,
       motivation: 2
     },
     benefits: {
-      accomplishment: 5
+      accomplishment: 4
     },
     condition: isFalse('educated'),
     effects: setSwitch('educated', toTrue)
@@ -215,11 +217,11 @@ const normalCards = [
     id: 'get_degree',
     title: 'Get a degree!',
     cost: {
-      time: 8,
+      time: 4,
       motivation: 4
     },
     benefits: {
-      accomplishment: 10
+      accomplishment: 5
     },
     condition: isTrue('educated'),
     effects: setAmount('degree', add(1))
@@ -228,11 +230,13 @@ const normalCards = [
     id: 'win_nobel_prize',
     title: 'Win Nobel prize!',
     cost: {
-      time: 8
+      time: 5,
+      health: 1,
+      motivation: 2
     },
     benefits: {
-      accomplishment: 20,
-      wealth: 10
+      accomplishment: 10,
+      wealth: 5
     },
     condition: filters.every(amount('degree', isAtLeast(1)), isFalse('nobel_prize')),
     effects: several(setSwitch('nobel_prize', toTrue), setSwitch('famous', toTrue))
@@ -241,12 +245,12 @@ const normalCards = [
     id: 'publish_biography',
     title: 'Publish biography!',
     cost: {
-      time: 4,
-      motivation: 10
+      time: 2,
+      motivation: 6
     },
     benefits: {
       accomplishment: 5,
-      wealth: 15
+      wealth: 12
     },
     condition: filters.every(isTrue('educated'), isTrue('famous'), isFalse('biography')),
     effects: setSwitch('biography', toTrue)
@@ -271,7 +275,7 @@ const normalCards = [
       health: 1
     },
     benefits: {
-      pleasure: 3,
+      pleasure: 2,
       accomplishment: -1
     }
   },
@@ -296,7 +300,8 @@ const normalCards = [
       motivation: 4
     },
     benefits: {
-      accomplishment: 2
+      accomplishment: 2,
+      wealth: 2
     },
     condition: filters.every(amount('social_media', isAtLeast(3)), isFalse('social_media_channel')),
     effects: several(setSwitch('social_media_channel', toTrue), setSwitch('famous', toTrue))
