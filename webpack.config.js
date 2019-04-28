@@ -14,7 +14,7 @@ module.exports = {
     new CleanWebpackPlugin(['dist']),
     new HtmlWebpackPlugin(
       {
-        title: 'Ludum Dare 44 (working title)'
+        title: 'P(l)ay with your life'
       }
     ),
     new CopyWebpackPlugin(
