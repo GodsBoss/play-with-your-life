@@ -9,10 +9,35 @@ export default class Highscores {
   }
 
   add(score) {
-    this.lists.wealth.add(score.wealth)
-    this.lists.accomplishment.add(score.accomplishment)
-    this.lists.pleasure.add(score.pleasure)
-    this.lists.total.add(score.total())
+    this.addWealth(score.wealth)
+    this.addAccomplishment(score.accomplishment)
+    this.addPleasure(score.pleasure)
+    this.addTotal(score.total())
+  }
+
+  addWealth(value) {
+    this.lists.wealth.add(value)
+  }
+
+  addAccomplishment(value) {
+    this.lists.accomplishment.add(value)
+  }
+
+  addPleasure(value) {
+    this.lists.pleasure.add(value)
+  }
+
+  addTotal(value) {
+    this.lists.total.add(value)
+  }
+
+  raw() {
+    return {
+      wealth: this.lists.wealth.raw(),
+      accomplishment: this.lists.accomplishment.raw(),
+      pleasure: this.lists.pleasure.raw(),
+      total: this.lists.total.raw()
+    }
   }
 }
 
@@ -29,5 +54,9 @@ class List {
     if (this.values.length > this.maxLength) {
       this.values = this.values.slice(0, -1)
     }
+  }
+
+  raw() {
+    return this.values
   }
 }

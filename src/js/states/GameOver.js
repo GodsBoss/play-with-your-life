@@ -11,6 +11,11 @@ export default class GameOver extends State {
 
   init(game) {
     game.data.highscores.add(game.data.score)
+    try{
+      window.localStorage.setItem('play_with_your_life.highscores', JSON.stringify(game.data.highscores.raw()))
+    } catch(e) {
+      // No local storage or no access or whatever.
+    }
     game.objects.push(
       {
         type: this.background,
