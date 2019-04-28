@@ -1,25 +1,14 @@
 import { fit } from '../font'
-import State from '../State'
+import Visible from './Visible'
 
-export default class Help extends State {
+export default class Help extends Visible {
   constructor({ nextState, background, size }) {
-    super()
+    super({ background, size })
     this.nextState = nextState
-    this.background = background
-    this.size = size
   }
 
   init(game) {
-    game.objects.push(
-      {
-        type: this.background,
-        x: 0,
-        y: 0,
-        w: this.size.width,
-        h: this.size.height,
-        z: -10000
-      }
-    )
+    super.init(game)
     game.objects.push(
       {
         type: 'screen_help',

@@ -1,31 +1,20 @@
 import { fit, line, LEFT, RIGHT } from '../font'
-import State from '../State'
+import Visible from './Visible'
 
-export default class GameOver extends State {
+export default class GameOver extends Visible {
   constructor({ nextState, background, size}) {
-    super()
+    super({ background, size })
     this.nextState = nextState
-    this.background = background
-    this.size = size
   }
 
   init(game) {
+    super.init(game)
     game.data.highscores.add(game.data.score)
     try{
       window.localStorage.setItem('play_with_your_life.highscores', JSON.stringify(game.data.highscores.raw()))
     } catch(e) {
       // No local storage or no access or whatever.
     }
-    game.objects.push(
-      {
-        type: this.background,
-        x: 0,
-        y: 0,
-        w: this.size.width,
-        h: this.size.height,
-        z: -10000
-      }
-    )
     game.objects.push(
       {
         type: 'screen_game_over',

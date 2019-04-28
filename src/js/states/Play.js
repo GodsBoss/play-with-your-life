@@ -1,25 +1,16 @@
 import { filters, setZ, withAll } from '../objects'
 import { fit, line, LEFT, RIGHT } from '../font'
-import State from '../State'
+import Visible from './Visible'
 
-export default class Play extends State {
+export default class Play extends Visible {
   constructor({ size, background, cards = [] }) {
-    super()
-    this.size = size
-    this.background = background
+    super({ size, background })
     this.cards = cards.map((raw) => new Card(raw))
   }
 
   init(game) {
-    [
-      {
-        type: this.background,
-        x: 0,
-        y: 0,
-        w: this.size.width,
-        h: this.size.height,
-        z: -10000
-      },
+    super.init(game)
+    ;[
       {
         type: 'life_time',
         x: 4,
