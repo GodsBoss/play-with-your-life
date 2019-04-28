@@ -10,7 +10,8 @@ const normalCards = [
     },
     benefits: {
       pleasure: 10
-    }
+    },
+    condition: isFalse('married')
   },
   {
     id: 'party_not_so_hard',
@@ -92,6 +93,7 @@ const normalCards = [
       accomplishment: 7,
       wealth: -5
     },
+    condition: isTrue('married'),
     effects: setAmount('children_count', add(1))
   },
   {
