@@ -123,6 +123,21 @@ const normalCards = [
     effects: setAmount('fitness', add(1))
   },
   {
+    id: 'win_the_olympics',
+    title: 'Win the Olympics!',
+    cost: {
+      time: 5,
+      health: 5,
+      motivation: 10
+    },
+    benefits: {
+      accomplishment: 15,
+      wealth: 5
+    },
+    condition: filters.every(isFalse('olympics'), amount('fitness', isAtLeast(3))),
+    effects: setSwitch('olympics', toTrue)
+  },
+  {
     id: 'do_boring_office_work',
     title: 'Do boring office work!',
     cost: {
