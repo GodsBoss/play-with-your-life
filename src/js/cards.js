@@ -20,6 +20,14 @@ const cards = [
     benefits: {
       pleasure: 15
     }
+  },
+  {
+    id: "waste_time",
+    title: "waste time!",
+    cost: {
+      time: 3
+    },
+    benefits: {}
   }
 ]
 
