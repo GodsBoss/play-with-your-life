@@ -116,11 +116,11 @@ const normalCards = [
     id: 'do_sports_you_like',
     title: 'Do sports you like!',
     cost: {
-      time: 5,
-      health: -5
+      time: 2,
+      health: -2
     },
     benefits: {
-      pleasure: 5
+      pleasure: 2
     },
     effects: setAmount('fitness', add(1))
   },
@@ -128,12 +128,12 @@ const normalCards = [
     id: 'do_sports_you_dont_like',
     title: "Do sports you don't like!",
     cost: {
-      time: 5,
-      health: -10,
-      motivation: 5
+      time: 2,
+      health: -3,
+      motivation: 1
     },
     benefits: {
-      accomplishment: 5
+      accomplishment: 2
     },
     effects: setAmount('fitness', add(1))
   },
@@ -141,13 +141,13 @@ const normalCards = [
     id: 'win_the_olympics',
     title: 'Win the Olympics!',
     cost: {
-      time: 5,
-      health: 5,
-      motivation: 10
+      time: 4,
+      health: 4,
+      motivation: 5
     },
     benefits: {
-      accomplishment: 15,
-      wealth: 5
+      accomplishment: 12,
+      wealth: 3
     },
     condition: filters.every(isFalse('olympics'), amount('fitness', isAtLeast(3))),
     effects: several(setSwitch('olympics', toTrue), setSwitch('famous', toTrue))
