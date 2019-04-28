@@ -27,7 +27,7 @@ const normalCards = [
     id: "thoughts_and_prayers",
     title: "Thoughts and prayers!",
     cost: {
-      time: 3
+      time: 1
     },
     benefits: {}
   },
