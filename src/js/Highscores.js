@@ -24,7 +24,7 @@ class List {
 
   add(value) {
     this.values.push(value)
-    this.values.sort()
+    this.values.sort((a, b) => a - b)
     this.values = this.values.reverse()
     if (this.values.length > this.maxLength) {
       this.values = this.values.slice(0, -1)
