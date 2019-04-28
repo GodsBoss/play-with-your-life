@@ -24,8 +24,8 @@ const normalCards = [
     }
   },
   {
-    id: "waste_time",
-    title: "waste time!",
+    id: "thoughts_and_prayers",
+    title: "Thoughts and prayers!",
     cost: {
       time: 3
     },
