@@ -173,6 +173,17 @@ const normalCards = [
     condition: isTrue('educated')
   },
   {
+    id: 'do_dangerous_work',
+    title: 'Do dangerous work!',
+    cost: {
+      time: 2,
+      health: 6
+    },
+    benefits: {
+      wealth: 8
+    }
+  },
+  {
     id: 'educate_yourself',
     title: 'Educate yourself!',
     cost: {
