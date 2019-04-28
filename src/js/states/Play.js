@@ -72,6 +72,7 @@ export default class Play extends State {
     game.data.score = new Score()
     game.data.life = new Life(100)
     game.data.properties = new Properties()
+    game.data.properties.setSwitch('debug', false)
     this.updateLifeChars(game)
     this.updateScoreChars(game)
     this.updateCards(game)
