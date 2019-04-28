@@ -142,7 +142,7 @@ function createFontSprites() {
   const charCodeA = 'A'.charCodeAt(0)
   const charCodeZ = 'Z'.charCodeAt(0)
   const chars = []
-  for(var offset = 0; offset < charCodeZ - charCodeA; offset++) {
+  for(var offset = 0; offset <= charCodeZ - charCodeA; offset++) {
     chars.push(
       {
         type: 'char_' + String.fromCharCode(charCodeA + offset),
