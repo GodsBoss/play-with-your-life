@@ -121,6 +121,80 @@ const normalCards = [
       accomplishment: 5
     },
     effect: setAmount('fitness', add(1))
+  },
+  {
+    id: 'do_boring_office_work',
+    title: 'Do boring office work!',
+    cost: {
+      time: 4,
+      motivation: 6
+    },
+    benefits: {
+      wealth: 10
+    }
+  },
+  {
+    id: 'do_blue_collar_work',
+    title: 'Do blue-collar work!',
+    cost: {
+      time: 2,
+      health: 4
+    },
+    benefits: {
+      wealth: 6
+    }
+  },
+  {
+    id: 'do_white_collar_work',
+    title: 'Do white-collar work!',
+    cost: {
+      time: 2,
+      health: 2,
+      motivation: 2
+    },
+    benefits: {
+      wealth: 9
+    },
+    condition: isTrue('educated')
+  },
+  {
+    id: 'educate_yourself',
+    title: 'Educate yourself!',
+    cost: {
+      time: 8,
+      motivation: 2
+    },
+    benefits: {
+      accomplishment: 5
+    },
+    condition: isFalse('educated'),
+    effects: setSwitch('educated', toTrue)
+  },
+  {
+    id: 'get_degree',
+    title: 'Get a degree!',
+    cost: {
+      time: 8,
+      motivation: 4
+    },
+    benefits: {
+      accomplishment: 10
+    },
+    condition: isTrue('educated'),
+    effects: setAmount('degree', add(1))
+  },
+  {
+    id: 'win_nobel_prize',
+    title: 'Win Nobel prize!',
+    cost: {
+      time: 8
+    },
+    benefits: {
+      accomplishment: 20,
+      wealth: 10
+    },
+    condition: filters.every(amount('degree', isAtLeast(1)), isFalse('nobel_prize')),
+    effects: setSwitch('nobel_prize', toTrue)
   }
 ]
 
@@ -245,6 +319,14 @@ function setAmount(key, change) {
 
 function toFixedValue(value) {
   return (game, current) => value
+}
+
+function toTrue(game, current) {
+  return true
+}
+
+function toFalse(game, current) {
+  return false
 }
 
 function add(value) {
