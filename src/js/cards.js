@@ -56,6 +56,45 @@ const cards = [
     },
     condition: isTrue('married'),
     effects: setSwitch('married', toFixedValue(false))
+  },
+  {
+    id: "have_a_baby",
+    title: "have a baby!",
+    cost: {
+      time: 10,
+      motivation: 3
+    },
+    benefits: {
+      accomplishment: 10,
+      wealth: -7
+    },
+    effects: setAmount('children_count', add(1))
+  },
+  {
+    id: "adopt_a_child",
+    title: "adopt a child!",
+    cost: {
+      time: 8,
+      motivation: 1
+    },
+    benefits: {
+      accomplishment: 7,
+      wealth: -5
+    },
+    effects: setAmount('children_count', add(1))
+  },
+  {
+    id: "release_child_for_adoption",
+    title: "release child for adoption!",
+    cost: {
+      time: -5,
+      motivation: -2
+    },
+    benefits: {
+      accomplishment: -3,
+      wealth: 5
+    },
+    condition: amount('children_count', isMoreThan(0))
   }
 ]
 
@@ -98,13 +137,17 @@ function isBetween(min, max) {
 }
 
 function setSwitch(key, change) {
-  return (game) => game.data.properties.setSwitch(key, change(game))
+  return (game) => game.data.properties.setSwitch(key, change(game, game.data.properties.getSwitch(key)))
 }
 
 function setAmount(key, change) {
-  return (game) => game.data.properties.setAmount(key, change(game))
+  return (game) => game.data.properties.setAmount(key, change(game, game.data.properties.getAmount(key)))
 }
 
 function toFixedValue(value) {
-  return (game) => value
+  return (game, current) => value
+}
+
+function add(value) {
+  return (game, current) => current + value
 }
