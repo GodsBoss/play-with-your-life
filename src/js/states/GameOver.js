@@ -9,6 +9,7 @@ export default class GameOver extends State {
   }
 
   init(game) {
+    game.data.highscores.add(game.data.score)
     game.objects.push(
       {
         type: this.background,
