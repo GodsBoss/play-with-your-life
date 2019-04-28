@@ -2,7 +2,9 @@
   "name": "@godsboss/play-with-your-life",
   "version": "1.0.0",
   "description": "",
-  "scripts": {},
+  "scripts": {
+    "dev-server": "webpack-dev-server"
+  },
   "author": "Timo Reitz",
   "license": "GPL-3.0",
   "devDependencies": {
