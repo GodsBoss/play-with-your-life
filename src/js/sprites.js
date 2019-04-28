@@ -22,6 +22,13 @@ const sprites = [].concat(
       h: 200
     },
     {
+      type: "screen_highscores",
+      x: 1280,
+      y: 600,
+      w: 320,
+      h: 200
+    },
+    {
       type: "game_over_background",
       x: 0,
       y: 74,
