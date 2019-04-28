@@ -96,6 +96,74 @@ const cards = [
     },
     condition: amount('children_count', isMoreThan(0)),
     effects: setAmount('children_count', add(-1))
+  },
+  {
+    id: 'debug_lose_time',
+    title: 'Lose',
+    cost: {
+      time: 1000
+    },
+    benefits: {},
+    condition: isTrue('debug')
+  },
+  {
+    id: 'debug_lose_health',
+    title: 'Lose',
+    cost: {
+      health: 1000
+    },
+    benefits: {},
+    condition: isTrue('debug')
+  },
+  {
+    id: 'debug_lose_motivation',
+    title: 'Lose',
+    cost: {
+      motivation: 1000
+    },
+    benefits: {},
+    condition: isTrue('debug')
+  },
+  {
+    id: 'debug_lose_time_health',
+    title: 'Lose',
+    cost: {
+      time: 1000,
+      health: 1000
+    },
+    benefits: {},
+    condition: isTrue('debug')
+  },
+  {
+    id: 'debug_lose_time_motivation',
+    title: 'Lose',
+    cost: {
+      time: 1000,
+      motivation: 1000
+    },
+    benefits: {},
+    condition: isTrue('debug')
+  },
+  {
+    id: 'debug_lose_health_motivation',
+    title: 'Lose',
+    cost: {
+      health: 1000,
+      motivation: 1000
+    },
+    benefits: {},
+    condition: isTrue('debug')
+  },
+  {
+    id: 'debug_lose_time_health_motivation',
+    title: 'Lose',
+    cost: {
+      time: 1000,
+      health: 1000,
+      motivation: 1000
+    },
+    benefits: {},
+    condition: isTrue('debug')
   }
 ]
 
