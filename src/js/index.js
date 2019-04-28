@@ -31,11 +31,11 @@ function init(e) {
     ],
     () => {
       const game = (new Game()).
-        registerState('init', new Init({ nextState: 'title ', maxHighscoreListLength: 5 })).
+        registerState('init', new Init({ nextState: 'title', maxHighscoreListLength: 5 })).
         registerState('title', new Splash({ nextState: "play", background: "bg", image: "screen_title", size: size})).
         registerState('play', new Play({ size: size, background: "bg", cards: cards })).
         registerState('game_over', new GameOver({ nextState: 'title', background: 'bg', size: size }))
-      game.nextState('title')
+      game.nextState('init')
       start(
         (next) => {
           window.setTimeout(next, 1000 / TPS, next)
