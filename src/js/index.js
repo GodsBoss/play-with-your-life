@@ -5,7 +5,7 @@ import GameOver from './states/GameOver'
 import Help from './states/Help'
 import Highscores from './states/Highscores'
 import Init from './states/Init'
-import Splash from './states/Splash'
+import Title from './states/Title'
 import loader from './loader'
 import { start } from './Loop'
 import Play from './states/Play'
@@ -34,7 +34,7 @@ function init(e) {
     () => {
       const game = (new Game()).
         registerState('init', new Init({ nextState: 'title', maxHighscoreListLength: 10 })).
-        registerState('title', new Splash({ nextState: "play", background: "bg", image: "screen_title", size: size})).
+        registerState('title', new Title({ background: "bg", image: "screen_title", size: size})).
         registerState('play', new Play({ size: size, background: "bg", cards: cards })).
         registerState('game_over', new GameOver({ nextState: 'highscores', background: 'bg', size: size })).
         registerState('help', new Help({ nextState: 'title', background: 'bg', size: size})).
