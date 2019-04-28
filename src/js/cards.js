@@ -224,6 +224,44 @@ const normalCards = [
     },
     condition: filters.every(isTrue('educated'), isTrue('famous'), isFalse('biography')),
     effects: setSwitch('biography', toTrue)
+  },
+  {
+    id: 'use_social_media',
+    title: 'Use social media!',
+    cost: {
+      time: 2,
+      motivation: 2
+    },
+    benefits: {
+      pleasure: 2
+    },
+    effects: setAmount('social_media', add(1))
+  },
+  {
+    id: 'start_blog',
+    title: 'Start blog!',
+    cost: {
+      time: 2,
+      motivation: 4
+    },
+    benefits: {
+      accomplishment: 2
+    },
+    condition: isTrue('blog'),
+    effects: several(setAmount('social_media', add(2)), setSwitch('blog', toTrue))
+  },
+  {
+    id: 'get_own_social_media_channel',
+    title: 'Get own social media channel',
+    cost: {
+      time: 2,
+      motivation: 4
+    },
+    benefits: {
+      accomplishment: 2
+    },
+    condition: filters.every(amount('social_media', isAtLeast(3)), isFalse('social_media_channel')),
+    effects: several(setSwitch('social_media_channel', toTrue), setSwitch('famous', toTrue))
   }
 ]
 
