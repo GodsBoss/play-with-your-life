@@ -168,7 +168,7 @@ function createFontSprites() {
   }
 
   // Generate sprite info for some punctuation.
-  '.,:!?-="()+ '.split('').forEach(
+  `.,:!?-="()+ '`.split('').forEach(
     (char, index) => {
       chars.push(
         {
