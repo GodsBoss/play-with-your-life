@@ -135,7 +135,7 @@ const normalCards = [
       wealth: 5
     },
     condition: filters.every(isFalse('olympics'), amount('fitness', isAtLeast(3))),
-    effects: setSwitch('olympics', toTrue)
+    effects: several(setSwitch('olympics', toTrue), setSwitch('famous', toTrue))
   },
   {
     id: 'do_boring_office_work',
@@ -209,7 +209,21 @@ const normalCards = [
       wealth: 10
     },
     condition: filters.every(amount('degree', isAtLeast(1)), isFalse('nobel_prize')),
-    effects: setSwitch('nobel_prize', toTrue)
+    effects: several(setSwitch('nobel_prize', toTrue), setSwitch('famous', toTrue))
+  },
+  {
+    id: 'publish_biography',
+    title: 'Publish biography!',
+    cost: {
+      time: 4,
+      motivation: 10
+    },
+    benefits: {
+      accomplishment: 5,
+      wealth: 15
+    },
+    condition: filters.every(isTrue('educated'), isTrue('famous'), isFalse('biography')),
+    effects: setSwitch('biography', toTrue)
   }
 ]
 
@@ -322,6 +336,10 @@ function isLessThan(max) {
 
 function isBetween(min, max) {
   return filters.every(isAtLeast(min), isAtMost(max))
+}
+
+function several(...effects) {
+  return (game) => effects.forEach((effect) => effect(game))
 }
 
 function setSwitch(key, change) {
