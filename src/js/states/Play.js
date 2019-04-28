@@ -130,18 +130,18 @@ export default class Play extends State {
               type: "card_background",
               belongs_to: 'card',
               card_id: card.id,
-              x: col * 80 + 2,
-              y: row * 64 + 74,
-              w: 76,
-              h: 60,
+              x: col * (CARD_SIZE.width + 4) + 2,
+              y: row * (CARD_SIZE.height + 4) + 74,
+              w: CARD_SIZE.width,
+              h: CARD_SIZE.height,
               z: 1000
             }
           )
           game.objects.push(
-            ...withAll(fit({ message: card.title, position: { x: col * 80 + 4, y: row * 64 + 76 }, width: 76 }), setZ(10000))
+            ...withAll(fit({ message: card.title, position: { x: col * (CARD_SIZE.width + 4) + 4, y: row * (CARD_SIZE.height + 4) + 76 }, width: CARD_SIZE.width - 4 }), setZ(10000))
           )
-          createCardChangeObjects(game, { position: { x: col * 80 + 4, y: row * 64 + 103 }, typePrefix: 'life', changes: card.getCost(), swapSignum: SWAP_SIGNUM })
-          createCardChangeObjects(game, { position: { x: col * 80 + 48, y: row * 64 + 103 }, typePrefix: 'score', changes: card.getBenefits() })
+          createCardChangeObjects(game, { position: { x: col * (CARD_SIZE.width + 4) + 4, y: row * (CARD_SIZE.height + 4) + 103 }, typePrefix: 'life', changes: card.getCost(), swapSignum: SWAP_SIGNUM })
+          createCardChangeObjects(game, { position: { x: col * (CARD_SIZE.width + 4) + 48, y: row * (CARD_SIZE.height + 4) + 103 }, typePrefix: 'score', changes: card.getBenefits() })
         }
     )
   }
@@ -149,6 +149,11 @@ export default class Play extends State {
   tick(game) {}
 
   invoke(game, event) {}
+}
+
+const CARD_SIZE = {
+  width: 76,
+  height: 60
 }
 
 const KEEP_SIGNUM = 1
