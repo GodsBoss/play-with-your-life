@@ -71,6 +71,7 @@ export default class Play extends State {
     ].forEach((obj) => game.objects.push(obj))
     game.data.score = new Score()
     game.data.life = new Life(100)
+    game.data.properties = new Properties()
     this.updateLifeChars(game)
     this.updateScoreChars(game)
     this.updateCards(game)
@@ -343,5 +344,37 @@ function withAll(arr, ...fns) {
 function setZ(z) {
   return function(item) {
     item.z = z
+  }
+}
+
+// Properties contains additional, hidden properties, useful for cards conditions
+// and effects.
+class Properties {
+  constructor() {
+    this.switches = {}
+    this.amounts = {}
+  }
+
+  // getSwitch returns the current state of a switch, identified by key.
+  // Guaranteed to return a boolean.
+  getSwitch(key) {
+    return !!this.switches[key]
+  }
+
+  setSwitch(key, value) {
+    this.switches[key] = value
+  }
+
+  // getAmount returns the current amount, identified by key. Guaranteed to
+  // return a number.
+  getAmount(key) {
+    if (typeof this.amounts[key] === 'number') {
+      return this.amounts[key]
+    }
+    return 0
+  }
+
+  setAmount(key, value) {
+    this.amounts[key] = value
   }
 }
