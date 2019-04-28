@@ -15,7 +15,7 @@ const normalCards = [
   },
   {
     id: 'party_not_so_hard',
-    title: 'Party not so hard!',
+    title: 'Party less hard!',
     cost: {
       time: 1,
       health: 4
@@ -60,7 +60,7 @@ const normalCards = [
   },
   {
     id: "divorce",
-    title: "divorce!",
+    title: "Get a divorce!",
     cost: {
       health: 4,
       motivation: -4
@@ -74,7 +74,7 @@ const normalCards = [
   },
   {
     id: "have_a_baby",
-    title: "have a baby!",
+    title: "Make a baby!",
     cost: {
       time: 3,
       motivation: 2
@@ -156,7 +156,7 @@ const normalCards = [
   },
   {
     id: 'do_boring_office_work',
-    title: 'Do boring office work!',
+    title: 'Work in office (boring)!',
     cost: {
       time: 2,
       motivation: 3
@@ -178,7 +178,7 @@ const normalCards = [
   },
   {
     id: 'do_white_collar_work',
-    title: 'Do white-collar work!',
+    title: 'Work smarter, not harder!',
     cost: {
       time: 2,
       health: 2,
@@ -191,7 +191,7 @@ const normalCards = [
   },
   {
     id: 'do_dangerous_work',
-    title: 'Do dangerous work!',
+    title: 'Work harder, not smarter!',
     cost: {
       time: 2,
       health: 6
@@ -269,7 +269,7 @@ const normalCards = [
   },
   {
     id: 'be_angry_troll',
-    title: 'Be angry troll!',
+    title: 'Troll the internet!',
     cost: {
       time: 1,
       health: 1
