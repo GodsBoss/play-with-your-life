@@ -94,7 +94,8 @@ const cards = [
       accomplishment: -3,
       wealth: 5
     },
-    condition: amount('children_count', isMoreThan(0))
+    condition: amount('children_count', isMoreThan(0)),
+    effects: setAmount('children_count', add(-1))
   }
 ]
 
