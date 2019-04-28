@@ -168,7 +168,7 @@ function createCardChangeObjects(game, { position, typePrefix, changes, swapSign
           z: 10000
         }
       )
-      const value = (change.value * swapSignum > 0 ? '-' : '+') + change.value
+      const value = (change.value * swapSignum < 0 ? '-' : '+') + change.value
       game.objects.push(
         ...withAll(line({ message: value, position: { x: position.x + 11, y: position.y + 2 + index * 10 }}), setZ(10000))
       )
