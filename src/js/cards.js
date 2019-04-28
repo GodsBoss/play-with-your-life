@@ -159,10 +159,10 @@ const normalCards = [
     title: 'Work in office (boring)!',
     cost: {
       time: 2,
-      motivation: 3
+      motivation: 4
     },
     benefits: {
-      wealth: 5
+      wealth: 6
     }
   },
   {
@@ -182,10 +182,10 @@ const normalCards = [
     cost: {
       time: 2,
       health: 2,
-      motivation: 2
+      motivation: 3
     },
     benefits: {
-      wealth: 8
+      wealth: 9
     },
     condition: isTrue('educated')
   },
