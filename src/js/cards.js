@@ -164,6 +164,31 @@ const cards = [
     },
     benefits: {},
     condition: isTrue('debug')
+  },
+  {
+    id: 'do_sports_you_like',
+    title: 'Do sports you like!',
+    cost: {
+      time: 5,
+      health: -5
+    },
+    benefits: {
+      pleasure: 5
+    },
+    effect: setAmount('fitness', add(1))
+  },
+  {
+    id: 'do_sports_you_dont_like',
+    title: "Do sports you don't like!",
+    cost: {
+      time: 5,
+      health: -10,
+      motivation: 5
+    },
+    benefits: {
+      accomplishment: 5
+    },
+    effect: setAmount('fitness', add(1))
   }
 ]
 
