@@ -107,7 +107,7 @@ const normalCards = [
     benefits: {
       pleasure: 5
     },
-    effect: setAmount('fitness', add(1))
+    effects: setAmount('fitness', add(1))
   },
   {
     id: 'do_sports_you_dont_like',
@@ -120,7 +120,7 @@ const normalCards = [
     benefits: {
       accomplishment: 5
     },
-    effect: setAmount('fitness', add(1))
+    effects: setAmount('fitness', add(1))
   },
   {
     id: 'do_boring_office_work',
