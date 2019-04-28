@@ -316,6 +316,24 @@ const normalCards = [
     benefits: {
       pleasure:4
     }
+  },
+  {
+    id: 'fitness_model',
+    title: 'Become a fitness model!',
+    cost: {
+      time: 2,
+      motivation: 2
+    },
+    benefits: {
+      wealth: 3,
+      accomplishment: 2
+    },
+    condition: filters.every(
+      amount('social_media', isAtLeast(2)),
+      amount('fitness', isAtLeast(2)),
+      isFalse('fitness_model')
+    ),
+    effects: setSwitch('fitness_model', toTrue)
   }
 ]
 
