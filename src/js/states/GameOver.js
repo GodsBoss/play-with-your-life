@@ -1,3 +1,4 @@
+import { fit } from '../font'
 import State from '../State'
 
 export default class GameOver extends State {
@@ -61,6 +62,15 @@ export default class GameOver extends State {
         z: 10000
       }
     )
+    game.objects.push(
+      ...fit(
+        {
+          message: MESSAGES[endReason],
+          position: { x: 20, y: IMAGE_POSITION.y + 128 + 4 },
+          width: 280
+        }
+      )
+    )
   }
 
   tick(game) {}
@@ -75,4 +85,14 @@ export default class GameOver extends State {
 const IMAGE_POSITION = {
   x: 40,
   y: 40
+}
+
+const MESSAGES = {
+  time: 'You die peacefully while sleeping in your bed.',
+  health: 'Your rotten body fails to function, no doctor could save you.',
+  time_health: 'Old age and an unhealthy lifestyle destroyed you.',
+  motivation: 'With your last drop of initiative, you end your life.',
+  time_motivation: 'You are too old and tired to live anymore.',
+  health_motivation: 'The doctor is not sure wether you died by self-harm or because of your miserable health.',
+  time_health_motivation: 'Both physically and mentally, hope was lost, with no time to fix it.'
 }
