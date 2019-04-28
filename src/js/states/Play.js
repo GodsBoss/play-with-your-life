@@ -17,49 +17,56 @@ export default class Play extends State {
         x: 0,
         y: 0,
         w: this.size.width,
-        h: this.size.height
+        h: this.size.height,
+        z: -10000
       },
       {
         type: 'life_time',
         x: 4,
         y: 4,
         w: 9,
-        h: 9
+        h: 9,
+        z: 0
       },
       {
         type: 'life_health',
         x: 4,
         y: 15,
         w: 9,
-        h: 9
+        h: 9,
+        z: 0
       },
       {
         type: 'life_motivation',
         x: 4,
         y: 26,
         w: 9,
-        h: 9
+        h: 9,
+        z: 0
       },
       {
         type: 'score_wealth',
         x: 306,
         y: 4,
         w: 9,
-        h: 9
+        h: 9,
+        z: 0
       },
       {
         type: 'score_accomplishment',
         x: 306,
         y: 15,
         w: 9,
-        h: 9
+        h: 9,
+        z: 0
       },
       {
         type: 'score_pleasure',
         x: 306,
         y: 26,
         w: 9,
-        h: 9
+        h: 9,
+        z: 0
       }
     ].forEach((obj) => game.objects.push(obj))
     game.data.score = new Score()
@@ -95,6 +102,7 @@ export default class Play extends State {
       )
     )
     chars.forEach(letBelongTo('life'))
+    chars.forEach(setZ(0))
     game.objects.push(...chars)
   }
 
@@ -110,6 +118,7 @@ export default class Play extends State {
       )
     )
     chars.forEach(letBelongTo('score'))
+    chars.forEach(setZ(0))
     game.objects.push(...chars)
   }
 
@@ -138,11 +147,12 @@ export default class Play extends State {
               x: col * 80 + 2,
               y: row * 64 + 74,
               w: 76,
-              h: 60
+              h: 60,
+              z: 1000
             }
           )
           game.objects.push(
-            ...fit({ message: card.title, position: { x: col * 80 + 4, y: row * 64 + 76 }, width: 76 })
+            ...withAll(fit({ message: card.title, position: { x: col * 80 + 4, y: row * 64 + 76 }, width: 76 }), setZ(10000))
           )
           createCardChangeObjects(game, { position: { x: col * 80 + 4, y: row * 64 + 103 }, typePrefix: 'life', changes: card.getCost(), swapSignum: SWAP_SIGNUM })
           createCardChangeObjects(game, { position: { x: col * 80 + 48, y: row * 64 + 103 }, typePrefix: 'score', changes: card.getBenefits() })
@@ -168,12 +178,13 @@ function createCardChangeObjects(game, { position, typePrefix, changes, swapSign
           x: position.x,
           y: position.y + index * 10,
           w: 9,
-          h: 9
+          h: 9,
+          z: 10000
         }
       )
       const value = (change.value * swapSignum > 0 ? '-' : '+') + change.value
       game.objects.push(
-        ...line({ message: value, position: { x: position.x + 11, y: position.y + 2 + index * 10 }})
+        ...withAll(line({ message: value, position: { x: position.x + 11, y: position.y + 2 + index * 10 }}), setZ(10000))
       )
     }
   )
@@ -290,5 +301,21 @@ function shuffle(arr) {
     const temp = arr[i]
     arr[i] = arr[j]
     arr[j] = temp
+  }
+}
+
+// withAll executes fn on all items of arr, then returns it.
+function withAll(arr, fn) {
+  arr.forEach(
+    (item, index, currentArr) => fn(item, index, currentArr)
+  )
+  return arr
+}
+
+// setZ returns a function which sets z on an object to the value of the variable z.
+// Used with withAll. Can also be used with forEach.
+function setZ(z) {
+  return function(item) {
+    item.z = z
   }
 }
