@@ -13,6 +13,17 @@ const normalCards = [
     }
   },
   {
+    id: 'party_not_so_hard',
+    title: 'Party not so hard!',
+    cost: {
+      time: 1,
+      health: 4
+    },
+    benefits: {
+      pleasure: 7
+    }
+  },
+  {
     id: "do_drugs",
     title: "do drugs!",
     cost: {
