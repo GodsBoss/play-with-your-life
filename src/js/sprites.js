@@ -44,7 +44,7 @@ const sprites = [].concat(
     },
     {
       type: "game_over_time_health",
-      x: 200, // 300
+      x: 300,
       y: 74,
       w: 100,
       h: 128
@@ -58,21 +58,21 @@ const sprites = [].concat(
     },
     {
       type: "game_over_time_motivation",
-      x: 400, // 500
+      x: 500,
       y: 74,
       w: 100,
       h: 128
     },
     {
       type: "game_over_health_motivation",
-      x: 200, // 600
+      x: 600,
       y: 74,
       w: 100,
       h: 128
     },
     {
       type: "game_over_time_health_motivation",
-      x: 200, // 700
+      x: 700,
       y: 74,
       w: 100,
       h: 128
