@@ -8,6 +8,10 @@
   },
   "author": "Timo Reitz",
   "homepage": "https://github.com/GodsBoss/play-with-your-life",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/GodsBoss/play-with-your-life.git"
+  },
   "license": "GPL-3.0",
   "devDependencies": {
     "@babel/core": "^7.1.6",
