@@ -334,6 +334,30 @@ const normalCards = [
       isFalse('fitness_model')
     ),
     effects: setSwitch('fitness_model', toTrue)
+  },
+  {
+    id: 'make_healthy_food',
+    title: 'Make healthy food yourself',
+    cost: {
+      time: 2,
+      motivation: 2,
+      health: -1
+    },
+    benefits: {
+      wealth: 1,
+      accomplishment: 2
+    }
+  },
+  {
+    id: 'just_eat_junkfood',
+    title: 'Just eat junkfood',
+    cost: {
+      time: 1,
+      health: 2
+    },
+    benefits: {
+      pleasure: 3
+    }
   }
 ]
 
