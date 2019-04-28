@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
+    "build": "webpack",
     "dev-server": "webpack-dev-server"
   },
   "author": "Timo Reitz",
