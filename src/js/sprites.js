@@ -29,6 +29,13 @@ const sprites = [].concat(
       h: 200
     },
     {
+      type: "screen_help",
+      x: 960,
+      y: 600,
+      w: 320,
+      h: 200
+    },
+    {
       type: "game_over_background",
       x: 0,
       y: 74,
@@ -132,6 +139,34 @@ const sprites = [].concat(
       y: 14,
       w: 76,
       h: 60
+    },
+    {
+      type: "card_example",
+      x: 76,
+      y: 14,
+      w: 76,
+      h: 60
+    },
+    {
+      type: "title_button_start",
+      x: 152,
+      y: 14,
+      w: 57,
+      h: 11
+    },
+    {
+      type: "title_button_help",
+      x: 152,
+      y: 25,
+      w: 57,
+      h: 11
+    },
+    {
+      type: "title_button_highscore",
+      x: 152,
+      y: 36,
+      w: 57,
+      h: 11
     }
   ],
   createFontSprites()
