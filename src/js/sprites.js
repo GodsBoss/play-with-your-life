@@ -15,6 +15,69 @@ const sprites = [].concat(
       h: 200
     },
     {
+      type: "screen_game_over",
+      x: 1280,
+      y: 400,
+      w: 320,
+      h: 200
+    },
+    {
+      type: "game_over_background",
+      x: 0,
+      y: 74,
+      w: 100,
+      h: 128
+    },
+    {
+      type: "game_over_time",
+      x: 100,
+      y: 74,
+      w: 100,
+      h: 128
+    },
+    {
+      type: "game_over_health",
+      x: 200,
+      y: 74,
+      w: 100,
+      h: 128
+    },
+    {
+      type: "game_over_time_health",
+      x: 200, // 300
+      y: 74,
+      w: 100,
+      h: 128
+    },
+    {
+      type: "game_over_motivation",
+      x: 400,
+      y: 74,
+      w: 100,
+      h: 128
+    },
+    {
+      type: "game_over_time_motivation",
+      x: 400, // 500
+      y: 74,
+      w: 100,
+      h: 128
+    },
+    {
+      type: "game_over_health_motivation",
+      x: 200, // 600
+      y: 74,
+      w: 100,
+      h: 128
+    },
+    {
+      type: "game_over_time_health_motivation",
+      x: 200, // 700
+      y: 74,
+      w: 100,
+      h: 128
+    },
+    {
       type: "life_time",
       x: 0,
       y: 5,
